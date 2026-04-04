@@ -1,0 +1,18 @@
+Entites we can have
+
+User
+
+Product
+
+Product type
+
+Category
+
+SubCategory
+
+Order
+
+OrderItem
+
+Cart
+
