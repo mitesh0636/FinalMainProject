@@ -1,0 +1,22 @@
+<div class="orders-container">
+  <div class="orders-header">
+    <h1>My <span>Order History</span></h1>
+    <p>Track and manage your recent purchases</p>
+  </div>
+
+  <div class="orders-list">
+    @for(items of orders; track items.id) {
+      <app-ordercard
+        [order]="items"
+        (sendid)="handleopendetails($event)">
+      </app-ordercard>
+    } @empty {
+      <div class="no-orders">
+        <div class="empty-icon">📦</div>
+        <h3>No orders yet</h3>
+        <p>Looks like you haven't placed any orders. Start shopping to fill this up!</p>
+        <button class="shop-now-btn" routerLink="/general">Go to Shop</button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,141 @@
+/* Container */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-color: #f8f9fa; /* Soft white/grey background */
+  font-family: 'Inter', sans-serif;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7); /* Darkened slightly for better white text contrast */
+}
+
+/* Typography & Content */
+.overlay {
+  position: absolute;
+  left: 8%;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.text-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5.5rem; /* Slightly smaller for better screen fitting */
+  font-weight: 800;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  text-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+}
+
+.text-content p {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 15px 0;
+  opacity: 0.9;
+}
+
+.text-content span {
+  color: #a2d2ff; /* Your Light Blue accent */
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+/* Updated Button Styles */
+.shop-now {
+  padding: 14px 35px;
+  background: #a2d2ff; /* Theme Blue */
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.shop-now:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(162, 210, 255, 0.4);
+}
+
+/* Modern Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.arrow:hover { 
+  background: #a2d2ff; 
+  color: #000;
+  border-color: #a2d2ff;
+}
+
+.left { left: 20px; }
+.right { right: 20px; }
+
+/* Indicators */
+.indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+
+.indicators span {
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.indicators .dot-active {
+  background: #a2d2ff; /* Theme Blue */
+  width: 35px; 
+  border-radius: 10px;
+}

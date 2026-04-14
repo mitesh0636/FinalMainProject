@@ -1,0 +1,123 @@
+.profile-container {
+  padding: 50px 20px;
+  background-color: #f8f9fa; /* Very light grey to make the white card pop */
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 650px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+/* Header Section */
+.profile-header {
+  background-color: #a2d2ff; /* Your Light Blue */
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: #fff;
+}
+
+.avatar-circle {
+  width: 80px;
+  height: 80px;
+  background: #ffffff;
+  color: #a2d2ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.header-text h2 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+}
+
+.role-badge {
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* Body Section */
+.profile-body {
+  padding: 40px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.info-item label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #a2d2ff; /* Theme Blue for labels */
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.info-item p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Footer Section */
+.profile-footer {
+  padding: 0 40px 40px 40px;
+  text-align: right;
+}
+
+.update-btn {
+  background-color: #000000; /* Sharp Black Contrast */
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.update-btn:hover {
+  background-color: #a2d2ff; /* Switches to Blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(162, 210, 255, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}

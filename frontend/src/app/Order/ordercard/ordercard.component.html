@@ -1,0 +1,40 @@
+<div class="order-card">
+  <div class="order-header">
+    <div class="header-left">
+      <span class="label">Order ID</span>
+      <h3 class="order-id">#{{ order.id }}</h3>
+    </div>
+    <div class="header-right">
+      <span class="status-badge" [attr.data-status]="order.orderstatus">
+        {{ order.orderstatus }}
+      </span>
+    </div>
+  </div>
+
+  <div class="order-body">
+    <div class="info-group">
+      <label>Order Date</label>
+      <p>{{ order.orderDate | date:'mediumDate' }}</p>
+    </div>
+    <div class="info-group">
+      <label>Estimated Delivery</label>
+      <p>{{ order.deliveryDate | date:'mediumDate' }}</p>
+    </div>
+    <div class="info-group">
+      <label>Payment Method</label>
+      <p>{{ order.paymentMethod }}</p>
+    </div>
+    <div class="info-group price-summary">
+      <label>Total Payment</label>
+      <p class="total-amount">₹{{ order.TotalPayment }}</p>
+    </div>
+  </div>
+
+  <div class="order-footer">
+    <button class="btn-view" (click)="ViewOrder()">View Details</button>
+    
+    @if(order.orderstatus === 'ordered' || order.orderstatus === 'dispatched') {
+      <button class="btn-cancel" (click)="CancelOrder(order.id)">Cancel Order</button>
+    }
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="auth-wrapper">
+  <div class="register-card">
+    <div class="card-header">
+      <h2>पॉवरहाऊस <span>Join Us</span></h2>
+      <p>Create your account to start shopping</p>
+    </div>
+
+    <form #RegisterForm="ngForm" (ngSubmit)="onRegister(RegisterForm)" class="auth-form">
+      
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="name">Full Name</label>
+          <input type="text" name="name" [(ngModel)]="RegisterData.name" #name="ngModel" required minlength="3">
+          @if(name.invalid && name.touched){
+            <small class="error-msg">Min 3 characters required</small>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" name="email" [(ngModel)]="RegisterData.email" #email="ngModel" required email>
+          @if(email.invalid && email.touched){
+            <small class="error-msg">Please enter a valid email</small>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" [(ngModel)]="RegisterData.password" #password="ngModel" required minlength="6">
+          @if(password.invalid && password.touched){
+            <small class="error-msg">Minimum 6 characters required</small>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="contactno">Contact Number</label>
+          <input type="text" name="contactno" [(ngModel)]="RegisterData.contactno" #contactno="ngModel" required minlength="10" maxlength="10">
+          @if(contactno.invalid && contactno.touched) {
+            <small class="error-msg">10-digit number required</small>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="dateofbirth">Date of Birth</label>
+          <input type="date" name="dateofbirth" [(ngModel)]="RegisterData.dateofbirth" #dateofbirth="ngModel" required>
+          @if(dateofbirth.invalid && dateofbirth.touched){
+            <small class="error-msg">Field is required</small>
+          }
+        </div>
+      </div>
+
+      <div class="input-group full-width">
+        <label for="address">Residential Address</label>
+        <textarea name="address" [(ngModel)]="RegisterData.address" #address="ngModel" required minlength="15" rows="2"></textarea>
+        @if(address.invalid && address.touched){
+          <small class="error-msg">Please provide a detailed address (min 15 chars)</small>
+        }
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="submit-btn" [disabled]="RegisterForm.invalid">Create Account</button>
+      </div>
+    </form>
+  </div>
+</div>

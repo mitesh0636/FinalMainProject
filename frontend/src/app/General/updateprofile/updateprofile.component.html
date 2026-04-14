@@ -1,0 +1,56 @@
+<div class="settings-wrapper">
+  <div class="settings-card">
+    <div class="card-header">
+      <h2>पॉवरहाऊस <span>Settings</span></h2>
+      <p>Modify your account information below.</p>
+    </div>
+
+    <form #RegisterForm="ngForm" (ngSubmit)="onUpdate(RegisterForm)" class="settings-form">
+      
+      <div class="input-group">
+        <label for="name">Display Name</label>
+        <input type="text" 
+               name="name"
+               [(ngModel)]="UpdatedData.name"
+               #name="ngModel"
+               minlength="3"
+               placeholder="Enter full name">
+        @if(name.invalid && name.touched){
+          <small class="error-msg">A minimum of 3 characters is required.</small>
+        }
+      </div>
+
+      <div class="input-group">
+        <label for="contactno">Contact Number</label>
+        <input type="text"
+               name="contactno"
+               [(ngModel)]="UpdatedData.contactno"
+               #contactno="ngModel"
+               minlength="10" maxlength="10"
+               placeholder="10-digit mobile number">
+        @if(contactno.invalid && contactno.touched) {
+          <small class="error-msg">Please enter a valid 10-digit number.</small>
+        }
+      </div>
+
+      <div class="input-group">
+        <label for="address">Shipping Address</label>
+        <textarea name="address"
+                  [(ngModel)]="UpdatedData.address"
+                  #address="ngModel"
+                  minlength="15"
+                  rows="3"
+                  placeholder="Enter your full residential address"></textarea>
+        @if(address.invalid && address.touched){
+          <small class="error-msg">Minimum 15 characters required for delivery accuracy.</small>
+        }
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="save-btn" [disabled]="RegisterForm.invalid">
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

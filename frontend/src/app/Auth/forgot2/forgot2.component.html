@@ -1,0 +1,35 @@
+<div class="auth-wrapper">
+  <div class="verify-card">
+    <div class="card-header">
+      <div class="otp-display-box">
+        <small>Your Verification Code</small>
+        <h1 class="system-otp">{{ authservice.otp }}</h1>
+      </div>
+      <h2>पॉवरहाऊस <span>Verify</span></h2>
+      <p>Enter the 6-digit code shown above to continue.</p>
+    </div>
+
+    <div class="auth-form">
+      <div class="input-group">
+        <label for="enteredotp">Enter 6-Digit OTP</label>
+        <div class="otp-input-wrapper">
+          <input 
+            type="number" 
+            [(ngModel)]="enteredotp" 
+            placeholder="0 0 0 0 0 0"
+            required 
+            minlength="6" 
+            maxlength="6"
+            class="otp-field"
+          >
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="verify-btn" (click)="VerifyOTP()" [disabled]="!enteredotp">
+          Verify OTP
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

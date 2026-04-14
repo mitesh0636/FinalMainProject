@@ -1,0 +1,55 @@
+<div class="details-container">
+  @if(fullorder) {
+    <div class="order-invoice-header">
+      <div class="header-main">
+        <div class="title-section">
+          <h1>Order <span>Details</span></h1>
+          <p class="order-num">#{{ fullorder.id }}</p>
+        </div>
+        <div class="status-section">
+          <span class="status-label">Status</span>
+          <span class="status-text">{{ fullorder.orderstatus }}</span>
+        </div>
+      </div>
+
+      <div class="header-grid">
+        <div class="grid-item">
+          <label>Order Date</label>
+          <p>{{ fullorder.orderDate | date:'medium' }}</p>
+        </div>
+        <div class="grid-item">
+          <label>Delivery Date</label>
+          <p>{{ fullorder.deliveryDate | date:'mediumDate' }}</p>
+        </div>
+        <div class="grid-item">
+          <label>Payment Method</label>
+          <p>{{ fullorder.paymentMethod }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="items-list-section">
+      <h3 class="section-title">Purchased Items</h3>
+      <div class="items-grid">
+        @for(item of fullorder.orderitem; track item.id){
+          <app-orderitemcards [orderitem]="item"></app-orderitemcards>
+        }
+      </div>
+    </div>
+
+    <div class="order-billing-summary">
+      <div class="billing-row">
+        <span>Subtotal</span>
+        <span>₹{{ fullorder.SubTotal }}</span>
+      </div>
+      <div class="billing-row">
+        <span>Tax Applied</span>
+        <span>₹{{ fullorder.TaxApplied }}</span>
+      </div>
+      <div class="billing-row total">
+        <span>Total Payment</span>
+        <span class="grand-total">₹{{ fullorder.TotalPayment }}</span>
+      </div>
+    </div>
+  }
+</div>

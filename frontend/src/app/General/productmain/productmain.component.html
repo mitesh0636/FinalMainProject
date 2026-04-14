@@ -1,0 +1,48 @@
+<div class="main-container">
+  <div class="filter-section">
+    <div class="search-wrapper">
+      <input 
+        type="text" 
+        [formControl]="searchControl" 
+        placeholder="Search for clothes, accessories..."
+      >
+      <span class="search-icon">🔍</span>
+    </div>
+
+    <div class="price-filter-container">
+      <div class="price-input-wrapper">
+        <span class="currency-prefix">Rs</span>
+        <input 
+          type="number" 
+          [formControl]="minPriceControl" 
+          placeholder="Min"
+        >
+      </div>
+      
+      <span class="price-separator">to</span>
+
+      <div class="price-input-wrapper">
+        <span class="currency-prefix">Rs</span>
+        <input 
+          type="number" 
+          [formControl]="maxPriceControl" 
+          placeholder="Max"
+        >
+      </div>
+    </div>
+  </div>
+
+  @if (errormessage) {
+    <div class="error-banner">{{ errormessage }}</div>
+  }
+
+  <div class="product-grid">
+    @for (item of Products; track item.id) {
+      <app-productcard [product]="item" (idsend)="handleopenproductdetails($event)"></app-productcard>
+    } @empty {
+      <div class="no-results">
+        <p>No products found matching your search.</p>
+      </div>
+    }
+  </div>
+</div>

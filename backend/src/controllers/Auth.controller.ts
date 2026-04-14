@@ -44,6 +44,7 @@ static async Login(req: Request, res: Response, next: NextFunction): Promise<voi
     const jti = uuidv4();
     const token = jwt.sign({ sub: user.id, jti }, JWT_SECRET, { expiresIn: '7d' });
 
+
     sessionStore.create(jti, {
       userId: user.id,
       email: user.email,
@@ -73,7 +74,7 @@ static async requestOTP(req: Request, res: Response){
         return res.status(403).json({error: "Email Invalid"});
     }
     const otp = generateOTP(email);
-    return res.json({message: `The OTP for ${email} is ${otp}`}); 
+    return res.json(otp); 
 }
 
 static async verifyOTPcode(req: Request, res: Response)
@@ -84,14 +85,14 @@ static async verifyOTPcode(req: Request, res: Response)
     if (!isValid) {
         return res.status(400).json({error: "Invalid or expired OTP"})
     }
-    res.status(200).json({message: "OTP verified. You can now reset your password"})
+    return res.json(true);
 };
-
 
 
 static async UpdateProfile(req: Request, res:Response)
 {
     const userId = (req as any).user.id;
+    console.log(userId);
     if(!await AuthController.userRepo.findOneBy({id: userId}))
     {
         return res.status(404).json("User not available")
@@ -109,6 +110,14 @@ static async UpdateProfile(req: Request, res:Response)
         const hashPassword = await bcrypt.hash(req.body.newpassword, 10);
         await AuthController.userRepo.update(userId, {password: hashPassword})
        
+    }
+    if (req.body.contactno)
+    {
+      await AuthController.userRepo.update(userId, {contactno: req.body.contactno})
+    }
+
+    if (req.body.address){
+      await AuthController.userRepo.update(userId, {address: req.body.address});
     }
      return res.json({message: "All things updated sucessfully"})
 }
@@ -150,24 +159,16 @@ static async LogoutAll(req: Request, res: Response): Promise<void>{
   res.json({ message: 'All sessions terminated' });
 };
 
-static async LogoutwithsessionId(id: number,req: Request, res: Response): Promise<void>{
-  const user = req.user as User & { jti: string };
-  const { sessionId } = req.params;
+static async viewAllLiveSessions(req: Request, res:Response){
+ 
+  const userId = parseInt(String(req.params.id));//
+  const allsessions = sessionStore.getForUser(userId);
+  res.json(allsessions);
+}
 
-  const session = sessionStore.get(String(sessionId));
-  if (!session || session.userId !== user.id) {
-    res.status(404).json({ error: 'Session not found' });
-    return;
-  }
-
-  sessionStore.delete(String(sessionId));
-  if (sessionId === user.jti) {
-    res.clearCookie(COOKIE_NAME);
-  }
-  res.json({ message: 'Session terminated' });
-};
-
-
-
-
+static async getuser(req: Request, res: Response){
+  const userId = (req.user as User).id;
+  const user = await AuthController.userRepo.findOneBy({id: userId})
+  res.json(user);
+}
 }

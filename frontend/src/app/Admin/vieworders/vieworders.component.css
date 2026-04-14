@@ -1,0 +1,99 @@
+.admin-page-wrapper.admin-mode {
+  padding: 40px 20px;
+  background-color: #fffdf0;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.orders-container-full {
+  width: 100%;
+  max-width: 900px; /* Constrained width for better readability in single column */
+}
+
+/* Header Adjustments */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  border-bottom: 4px solid #000;
+  padding-bottom: 25px;
+}
+
+.header-indicator {
+  display: inline-block;
+  background: yellow;
+  color: black;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 4px 12px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.admin-header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.admin-header h1 span {
+  color: #FFD700;
+  background-color: #000;
+}
+
+.stat-box {
+  background: #FFD700;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  box-shadow: 4px 4px 0px #000;
+  text-align: right;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+/* Single Column Grid */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between each order row */
+}
+
+.order-row-item {
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+/* We force the child component to fill the width */
+.order-row-item app-viewordercard {
+  display: block;
+  width: 100%;
+}
+
+.order-row-item:hover {
+  transform: translateX(10px); /* Slides slightly right on hover for a list effect */
+}
+
+/* Empty State */
+.empty-terminal {
+  text-align: center;
+  padding: 60px;
+  border: 2px dashed #000;
+  background: #fff;
+  font-weight: 800;
+  color: #999;
+  letter-spacing: 2px;
+}

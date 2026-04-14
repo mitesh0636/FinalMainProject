@@ -1,0 +1,73 @@
+<div class="admin-page-wrapper admin-mode">
+  <div class="creation-center">
+    <div class="brand-header">
+      <div class="header-indicator">ADMIN TERMINAL</div>
+      <h1>पॉवरहाऊस <span>Create</span></h1>
+      <p>Select a management module to initialize new system parameters.</p>
+    </div>
+
+    <div class="tile-grid">
+      <button class="action-tile" (click)="createproducttype()">
+        <span class="tile-text">Product Type</span>
+      </button>
+
+      <button class="action-tile" (click)="createcategory()">
+        <span class="tile-text">Category</span>
+      </button>
+
+      <button class="action-tile" (click)="createsubcategory()">
+        <span class="tile-text">Sub-Category</span>
+      </button>
+    </div>
+  </div>
+
+  @if(typecount === 1){
+  <div class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">New Product Type</div>
+      <div class="modal-body">
+        <label>Type Name</label>
+        <input type="text" [(ngModel)]="typename" #typenam="ngModel" required minlength="3" placeholder="Enter name...">
+        <button class="modal-save-btn" (click)="createprotype()" [disabled]="typenam.invalid">Save Product Type</button>
+        <button class="modal-close" (click)="typecount = 0">Cancel</button>
+      </div>
+    </div>
+  </div>
+  }
+
+  @if(typecount === 2){
+  <div class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">New Category</div>
+      <div class="modal-body">
+        <label>Product Type ID Reference</label>
+        <input type="number" [(ngModel)]="typeid" #typei="ngModel" required placeholder="Ex: 101">
+        
+        <label>Category Name</label>
+        <input type="text" [(ngModel)]="categoryname" #categorynam="ngModel" required minlength="3" placeholder="Enter name...">
+        
+        <button class="modal-save-btn" (click)="createcaet()" [disabled]="typei.invalid || categorynam.invalid">Save Category</button>
+        <button class="modal-close" (click)="typecount = 0">Cancel</button>
+      </div>
+    </div>
+  </div>
+  }
+
+  @if(typecount === 3){
+  <div class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">New Sub-Category</div>
+      <div class="modal-body">
+        <label>Category ID Reference</label>
+        <input type="number" [(ngModel)]="categoryid" #categoryi="ngModel" required placeholder="Ex: 501">
+        
+        <label>Sub-Category Name</label>
+        <input type="text" [(ngModel)]="subcategoryname" #subcategorynam="ngModel" required minlength="3" placeholder="Enter name...">
+        
+        <button class="modal-save-btn" (click)="createsub()" [disabled]="categoryi.invalid || subcategorynam.invalid">Save SubCategory</button>
+        <button class="modal-close" (click)="typecount = 0">Cancel</button>
+      </div>
+    </div>
+  </div>
+  }
+</div>

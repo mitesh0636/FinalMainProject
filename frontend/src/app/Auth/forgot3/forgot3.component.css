@@ -1,0 +1,118 @@
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  background-color: #f8fbff;
+  font-family: 'Inter', sans-serif;
+}
+
+.reset-card {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #e2efff;
+  box-shadow: 0 15px 35px rgba(162, 210, 255, 0.1);
+  text-align: center;
+}
+
+/* Success Checkmark */
+.success-icon {
+  width: 50px;
+  height: 50px;
+  background: #a2d2ff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.card-header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.card-header h2 span {
+  color: #a2d2ff;
+}
+
+.card-header p {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* Input Fields */
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #a2d2ff;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  font-size: 0.75rem;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* Action Button */
+.reset-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+  letter-spacing: 1px;
+}
+
+.reset-btn:hover:not(:disabled) {
+  background: #a2d2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(162, 210, 255, 0.4);
+}
+
+.reset-btn:disabled {
+  background: #eee;
+  color: #aaa;
+  cursor: not-allowed;
+}

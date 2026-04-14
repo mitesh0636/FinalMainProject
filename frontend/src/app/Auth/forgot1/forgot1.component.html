@@ -1,0 +1,36 @@
+<div class="auth-wrapper">
+  <div class="forgot-card">
+    <div class="card-header">
+      <div class="icon-circle">
+        <i class="shield-icon">🔒</i>
+      </div>
+      <h2>पॉवरहाऊस <span>Recovery</span></h2>
+      <p>Enter your registered email to receive a verification code.</p>
+    </div>
+
+    <div class="auth-form">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <input 
+            type="email" 
+            [(ngModel)]="authservice.email" 
+            placeholder="example@mail.com"
+            required
+            #emailRef="ngModel"
+          >
+        </div>
+        @if (emailRef.invalid && emailRef.touched) {
+          <small class="error-msg">A valid email is required to proceed.</small>
+        }
+      </div>
+
+      <div class="form-actions">
+        <button class="generate-btn" (click)="generate()" [disabled]="!authservice.email">
+          Generate OTP
+        </button>
+        <a routerLink="/auth/login" class="back-link">← Back to Login</a>
+      </div>
+    </div>
+  </div>
+</div>

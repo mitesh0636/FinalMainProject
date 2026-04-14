@@ -1,0 +1,73 @@
+.orders-container {
+  padding: 50px 8%;
+  background-color: #ffffff;
+  min-height: 85vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.orders-header {
+  margin-bottom: 40px;
+}
+
+.orders-header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  margin: 0;
+}
+
+.orders-header h1 span {
+  color: #a2d2ff; /* Theme Light Blue */
+}
+
+.orders-header p {
+  color: #666;
+  margin-top: 5px;
+  font-size: 1.1rem;
+}
+
+/* Orders List Grid */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+}
+
+/* Empty State Styling */
+.no-orders {
+  text-align: center;
+  padding: 80px 20px;
+  background: #f8fbff;
+  border: 2px dashed #a2d2ff;
+  border-radius: 15px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.no-orders h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.shop-now-btn {
+  margin-top: 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.shop-now-btn:hover {
+  background-color: #a2d2ff;
+}

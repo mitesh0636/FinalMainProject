@@ -1,0 +1,32 @@
+<div class="admin-page-wrapper admin-mode">
+  <div class="orders-container-full">
+    
+    <div class="admin-header">
+      <div class="header-left">
+        <div class="header-indicator">Admin Terminal</div>
+        <h1>पॉवरहाऊस <span>Orders</span></h1>
+        <p>View all Orders</p>
+      </div>
+      
+      <div class="admin-stats">
+        <div class="stat-box">
+          <span class="stat-label">System Volume</span>
+          <span class="stat-value">{{ Orders.length || 0 }} Entries</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="orders-list">
+      @for(item of Orders; track item.id){
+        <div class="order-row-item">
+          <app-viewordercard [viewallorder]="item"></app-viewordercard>
+        </div>
+      } @empty {
+        <div class="empty-terminal">
+          <p>NO ACTIVE TRANSACTIONS DETECTED IN DATABASE</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</div>

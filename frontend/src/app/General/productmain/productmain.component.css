@@ -1,0 +1,149 @@
+/* Container Layout */
+.main-container {
+  padding: 40px 8%;
+  background-color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Integrated Filter Dashboard */
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(162, 210, 255, 0.1);
+  margin-bottom: 40px;
+  border: 1px solid #f0f7ff;
+  flex-wrap: wrap; 
+}
+
+/* Search Bar (Left Side) */
+.search-wrapper {
+  position: relative;
+  flex: 2;
+  min-width: 300px;
+}
+
+.search-wrapper input {
+  width: 90%;
+  padding: 14px 20px 14px 50px;
+  border: 2px solid #eef2f5;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background-color: #f8fbff;
+  transition: all 0.3s ease;
+}
+
+.search-wrapper input:focus {
+  outline: none;
+  border-color: #a2d2ff;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(162, 210, 255, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a2d2ff;
+  font-size: 1.1rem;
+}
+
+/* Price Filter Container (Right Side) */
+.price-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.price-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.currency-prefix {
+  position: absolute;
+  left: 12px;
+  color: #a2d2ff;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.price-input-wrapper input {
+  width: 100%;
+  padding: 12px 12px 12px 28px;
+  border: 2px solid #eef2f5;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  background-color: #f8fbff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.price-input-wrapper input:focus {
+  border-color: #a2d2ff;
+  background-color: #fff;
+}
+
+.price-separator {
+  color: #888;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Remove Number Arrows */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Feedback States */
+.error-banner {
+  background: #fff5f5;
+  color: #ff4d4d;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 25px;
+  border: 1px solid #ffebeb;
+  font-weight: 500;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px;
+  color: #bbb;
+  font-size: 1.1rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+  
+  .price-filter-container {
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,23 @@
+<div class="order-item-row">
+  <div class="product-thumb">
+    <img [src]="productservice.BASE_URL + '/' + orderitem.product.imagePath" 
+         [alt]="orderitem.product.name">
+  </div>
+
+  <div class="item-info">
+    <div class="info-top">
+      <h4 class="product-name">{{ orderitem.product.name }}</h4>
+      <span class="item-id">ID: #{{ orderitem.product.id }}</span>
+    </div>
+    <p class="purchase-details">
+      Quantity: <strong>{{ orderitem.quantity }}</strong> 
+      <span class="separator">|</span> 
+      Unit Price: <strong>₹{{ orderitem.priceAtPurchase }}</strong>
+    </p>
+  </div>
+
+  <div class="item-total">
+    <label>Item Total</label>
+    <p>₹{{ orderitem.priceAtPurchase * orderitem.quantity }}</p>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="details-container">
+  @if (Product) {
+    <div class="product-wrapper">
+      
+      <div class="image-section">
+        <div class="main-image">
+          <img [src]="productservice.BASE_URL + '/' + Product.imagePath" [alt]="Product.name">
+        </div>
+      </div>
+
+      <div class="info-section">
+        <nav class="breadcrumb">
+          {{ Product.SubCategory.category.producttype.typename }} / 
+          {{ Product.SubCategory.category.categoryname }} / 
+          <span>{{ Product.SubCategory.subcategoryname }}</span>
+        </nav>
+
+        <h1 class="product-title">{{ Product.name }}</h1>
+        
+        <div class="price-tag">₹{{ Product.price }}</div>
+        
+        <p class="description">{{ Product.description }}</p>
+
+        <div class="stock-status" [class.out-of-stock]="!Product.available">
+          {{ Product.available ? 'In Stock' : 'Currently Unavailable' }}
+        </div>
+
+        <hr>
+
+        <div class="action-section">
+          <div class="quantity-selector">
+            <button class="qty-btn" (click)="decrement()" [disabled]="quantity <= 1">−</button>
+            <span class="qty-number">{{ quantity }}</span>
+            <button class="qty-btn" (click)="increment()">+</button>
+          </div>
+
+          <button class="add-cart-btn" 
+                  [disabled]="!Product.available"
+                  (click)="addcart(Product.id, quantity)">
+            Add to Cart
+          </button>
+        </div>
+
+        <div class="product-meta">
+          <p>Product ID: #{{ Product.id }}</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>

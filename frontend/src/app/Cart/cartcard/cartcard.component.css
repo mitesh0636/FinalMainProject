@@ -1,0 +1,152 @@
+.cart-card {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  transition: 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.cart-card:hover {
+  border-color: #a2d2ff;
+  box-shadow: 0 4px 12px rgba(162, 210, 255, 0.1);
+}
+
+/* Image */
+.cart-img {
+  width: 100px;
+  height: 100px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cart-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Details */
+.cart-details {
+  flex-grow: 1;
+  padding: 0 25px;
+}
+
+.product-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+}
+
+.product-id {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin: 4px 0;
+}
+
+.product-price {
+  font-weight: 600;
+  color: #a2d2ff;
+  font-size: 1.1rem;
+  margin-top: 8px;
+}
+
+/* Actions & Quantity */
+.cart-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0 25px;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: #f8fbff;
+  border: none;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.qty-btn:hover { background: #a2d2ff; color: white; }
+
+.qty-val {
+  padding: 0 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.update-link {
+  background: none;
+  border: none;
+  color: #a2d2ff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  visibility: hidden; /* Only shows when quantity changes */
+}
+
+.update-link.visible {
+  visibility: visible;
+}
+
+/* Subtotal Section */
+.cart-subtotal {
+  text-align: right;
+  min-width: 120px;
+}
+
+.cart-subtotal label {
+  display: block;
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.cart-subtotal p {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #000;
+  margin: 5px 0 0 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-card { flex-direction: column; text-align: center; }
+  .cart-actions { border: none; margin: 15px 0; }
+  .cart-details { padding: 15px 0; }
+}

@@ -18,7 +18,7 @@ name!: string;
 @Column({unique:true})
 email!:string;
 
-@CreateDateColumn()
+@Column({type: "date", nullable: true})
 dateofbirth!:Date;
 
 @Column()
@@ -37,7 +37,7 @@ role!:Roleenum
 isLocked!:boolean;
 
 @CreateDateColumn({ 
-    type: "datetime", // Changed from "timestamp" to "datetime"
+    type: "datetime", 
     default: () => "CURRENT_TIMESTAMP" 
 })
 createdAt!: Date;

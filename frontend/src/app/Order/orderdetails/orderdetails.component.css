@@ -1,0 +1,122 @@
+.details-container {
+  padding: 40px 10%;
+  background-color: #ffffff;
+  min-height: 90vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Header Invoice Card */
+.order-invoice-header {
+  background-color: #a2d2ff; /* Your Light Blue */
+  color: #fff;
+  padding: 40px;
+  border-radius: 15px 15px 0 0;
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 20px;
+}
+
+.title-section h1 {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.title-section span { color: #000; }
+
+.order-num {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 5px 0 0 0;
+  opacity: 0.9;
+}
+
+.status-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: right;
+}
+
+.status-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.grid-item label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.grid-item p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Items Section */
+.items-list-section {
+  padding: 40px;
+  border: 1px solid #f0f0f0;
+  border-top: none;
+}
+
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  border-left: 4px solid #a2d2ff;
+  padding-left: 15px;
+}
+
+/* Billing Summary */
+.order-billing-summary {
+  margin-top: 20px;
+  padding: 30px 40px;
+  background-color: #f8f9fa;
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.billing-row {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #666;
+}
+
+.total {
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 2px solid #ddd;
+  color: #000;
+}
+
+.grand-total {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #a2d2ff; /* Theme Blue */
+}

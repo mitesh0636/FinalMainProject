@@ -1,0 +1,37 @@
+<div class="cart-card">
+  <div class="cart-img">
+    <img [src]="productservice.BASE_URL + '/' + cartitem.productc.imagePath" [alt]="cartitem.productc.name">
+  </div>
+
+  <div class="cart-details">
+    <div class="product-header">
+      <h3 class="product-name">{{ cartitem.productc.name }}</h3>
+      <p class="product-id">ID: #{{ cartitem.productc.id }}</p>
+    </div>
+    <p class="product-price">₹{{ cartitem.productc.price }}</p>
+  </div>
+
+  <div class="cart-actions">
+    <div class="quantity-control">
+      <button class="qty-btn" (click)="decrement()">−</button>
+      <span class="qty-val">{{ localquantity }}</span>
+      <button class="qty-btn" (click)="increment()">+</button>
+    </div>
+    
+    <div class="action-buttons">
+      <button class="update-link" 
+              [class.visible]="localquantity !== cartitem.quantity"
+              (click)="updatequantity(cartitem.id, localquantity)">
+        Update
+      </button>
+      <button class="remove-btn" (click)="removeItem(cartitem.id)">
+        Remove
+      </button>
+    </div>
+  </div>
+
+  <div class="cart-subtotal">
+    <label>Amount</label>
+    <p>₹{{ cartitem.productc.price * cartitem.quantity }}</p>
+  </div>
+</div>

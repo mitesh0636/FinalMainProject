@@ -16,14 +16,16 @@ static async checkout(req: Request, res: Response) {
         const userId = (req as any).user.id;
         const { paymentMethod } = req.body;
         let TotalPayment = 0;
+        let SubTotal = 0;
+        let TaxApplied = 0;
         let total = 0;
+
 
         await AppDataSource.transaction(async (Manager) => {
             const cart = await Manager.findOne(CART, {
                 where: { user: { id: userId } },
                 relations: ["cartITEM", "cartITEM.productc"]
             });
-
             if (!cart || cart.cartITEM.length === 0) throw new Error("Empty Cart");
 
             const deliveryDate = new Date();
@@ -34,7 +36,7 @@ static async checkout(req: Request, res: Response) {
                 paymentMethod: paymentMethod,
                 TotalPayment: TotalPayment,
                 deliveryDate: deliveryDate,
-                status:OrderStatus.ORDERED
+                orderstatus: OrderStatus.ORDERED
             });
             const savedOrder = await Manager.save(newOrder);
 
@@ -45,17 +47,19 @@ static async checkout(req: Request, res: Response) {
                     priceAtPurchase: item.productc.price,
                     quantity: item.quantity
                 });
-                total = total + (item.productc.price * item.quantity);
+                SubTotal = SubTotal + (item.productc.price * item.quantity);
                 console.log(total);
                 await Manager.save(orderItem);
             }
-            total = total + ((2/100) * total);
-            await OrderController.orderRepository.update(savedOrder.id, {TotalPayment: total})
+            TaxApplied = ((12/100) * SubTotal);
+            total = SubTotal + TaxApplied;
+            await OrderController.orderRepository.update(savedOrder.id, {SubTotal: SubTotal, TaxApplied: TaxApplied, TotalPayment: total})
+
+
             await Manager.delete(CARTITEM, { cart: { id: cart.id } });
         });
         return res.status(201).json({ message: "Order placed" });
 }
-
 
 
  static async getCustomerOrders(req: Request, res: Response) {
@@ -69,16 +73,15 @@ static async checkout(req: Request, res: Response) {
 
 
  static async getOrderDetails(req:Request, res: Response) {
-
+        const orderid = parseInt(String(req.params.id));
         const userId = (req as any).user.id;
-
+        
+    
         const userRole = (req as any).user.role;
 
         const order = await OrderController.orderRepository.findOne({
-             where:{id: userId},
-             relations: ["orderitem", "orderitem.product"]
-                    });
-
+             where:{id: orderid},
+             relations: ["user", "orderitem", "orderitem.product"]});
         if (!order) return res.status(403).json({message:"Order not found"});
 
         if (order.user.id !== userId && userRole !== 'admin') {
@@ -91,9 +94,10 @@ static async checkout(req: Request, res: Response) {
 static async cancelorder(req:Request, res:Response)
 {
   const userId = (req as any).user.id;
+  const orderId = parseInt(String(req.params.id));
 
-  const order = await OrderController.orderRepository.findOne({
-    where:{id: userId},
+      const order = await OrderController.orderRepository.findOne({
+    where:{id: orderId},
   })
   if (!order)
   {
@@ -102,17 +106,5 @@ static async cancelorder(req:Request, res:Response)
   await OrderController.orderRepository.update(order.id, {orderstatus: OrderStatus.CANCELLED} );
   return res.json({message: "Order Cancelled Sucessfully"})
 }
-
-
-
-
-
- static async getAllOrders(req: Request, res:Response) {
-        const orders = await OrderController.orderRepository.find({
-            relations:["user"],
-            order: {orderDate: 'DESC'}
-        });
-        return res.json(orders);
-    }
  }
 

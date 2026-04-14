@@ -1,0 +1,33 @@
+<div class="admin-page-wrapper admin-mode">
+  <div class="database-container">
+    
+    <div class="admin-header">
+      <div class="header-left">
+        <div class="header-indicator">Admin Terminal</div>
+        <h1>पॉवरहाऊस <span>All Customers</span></h1>
+        <p>Manage and view all registered users</p>
+      </div>
+      
+      <div class="stats-mini">
+        <div class="count-badge">
+          <span class="label">Total Customers</span>
+          <span class="value">{{ Customers.length || 0 }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="customer-grid">
+      @for(item of Customers; track item.id) {
+        <div class="card-wrapper">
+          <app-customercard [Customer]="item"></app-customercard>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          <div class="warning-icon">⚠️</div>
+          <p>No customer records found in the system database.</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { AppDataSource } from "../data.source";
 import { CART } from "../entities/Cart";
 import { CARTITEM } from "../entities/Cartitem";
 import { PRODUCT } from "../entities/Product";
+import { User } from "../entities/User";
 
 export class CartController {
     private static cartRepository = AppDataSource.getRepository(CART);
@@ -26,7 +27,7 @@ export class CartController {
 
 static async addToCart(req:Request, res:Response) {
         const {productId, quantity } = req.body;
-        const userId = (req as any).user.id;
+        const userId = (req.user as User).id;
 
         if (!productId || !quantity ){
             return res.status(400).json({message: "Invalid product or quantity"});
@@ -38,7 +39,9 @@ static async addToCart(req:Request, res:Response) {
     });
         const product = await CartController.productRepository.findOneBy({ id: productId});
 
-        if (!product) return res.status(404).json({message:"Product not found"});
+        if (!product) return res.status(404).json({message:"Product not found"})
+
+        if (product.isDeleted) return res.status(400).json({message:"Invalid Product"})
 
         if (cart)
         {
@@ -55,13 +58,13 @@ static async addToCart(req:Request, res:Response) {
             await CartController.cartItemRepository.save(item);
         }
     }
-
         return res.json({message: "Cart updated sucessfully"});
     }
 
 static async updateQuantity(req:Request, res:Response) {
 
-    const itemId = parseInt(String(req.params.itemId));
+    const itemId = parseInt(String(req.params.id));
+    console.log(itemId);
     const { quantity } = req.body;
 
     if (quantity <= 0)
@@ -77,14 +80,14 @@ return res.json({message:"Quantity updated"});
 }
 
 static async removeItem(req:Request, res:Response) {
-        const itemId = parseInt(String(req.params.itemId));
+        const itemId = parseInt(String(req.params.id));
         await CartController.cartItemRepository.delete(itemId);
         return res.json({message : "Item removed"})
 }
 
 static async clearCart(req: Request, res: Response)
 {
-        const userId = (req as any).user.id;
+        const userId = (req.user as User).id;
         const cart = await CartController.cartRepository.findOne({
             where: { user: { id: userId}},
             relations:["cartITEM"]

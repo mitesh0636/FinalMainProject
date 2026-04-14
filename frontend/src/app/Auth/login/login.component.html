@@ -1,0 +1,49 @@
+<div class="auth-wrapper">
+  <div class="login-card">
+    <div class="card-header">
+      <h2>पॉवरहाऊस <span>Login</span></h2>
+      <p>Enter your credentials to access your account</p>
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" class="auth-form">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <input type="email" name="email" 
+                 [(ngModel)]="loginData.email" 
+                 #user="ngModel" 
+                 required minlength="3">
+        </div>
+        @if (user.invalid && user.touched) {
+          <small class="error-text">Please enter a valid email identity.</small>
+        }
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input type="password" 
+                 name="password"
+                 [(ngModel)]="loginData.password"
+                 #pass="ngModel"
+                 required minlength="6"
+    >
+        </div>
+        @if(pass.invalid && pass.touched){
+          <small class="error-text">Password must be at least 6 characters.</small>
+        }
+      </div>
+
+      @if(errorMessage){
+        <div class="alert-box">{{errorMessage}}</div>
+      }
+
+      <div class="form-actions">
+        <button type="submit" class="login-btn" [disabled]="loginForm.invalid">
+          Login
+        </button>
+        <a routerLink="/auth/forgot1" class="forgot-link">Forgot Password?</a>
+      </div>
+    </form>
+  </div>
+</div>

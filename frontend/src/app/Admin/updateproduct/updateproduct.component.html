@@ -1,0 +1,65 @@
+<div class="admin-page-wrapper admin-mode">
+  <div class="form-card">
+    
+    <div class="card-header search-mode">
+      <div class="header-indicator">Admin Terminal</div>
+      <h2>पॉवरहाऊस <span>Update Product</span></h2>
+      <div class="search-row">
+        <input type="number" name="pid" [(ngModel)]="pid" placeholder="Enter Product ID">
+        <button class="fetch-btn" (click)='getproduct(pid)'>Get Product</button>
+      </div>
+    </div>
+
+    <form #UpdateForm="ngForm" class="form-body">
+      <div class="input-group full">
+        <label for="name">Product Namen</label>
+        <input type="text" name="name" [(ngModel)]="updateprod.name" required placeholder="Name">
+      </div>
+
+      <div class="input-group full">
+        <label for="description">Description</label>
+        <textarea name="desc" [(ngModel)]="updateprod.description" required rows="3"></textarea>
+      </div>
+
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="price">Unit Price (INR)</label>
+          <input type="number" name="price" [(ngModel)]="updateprod.price" required placeholder="0.00">
+        </div>
+
+        <div class="input-group">
+          <label for="subcategoryId">Sub-Category Mapping</label>
+          <input type="number" name="subId" [(ngModel)]="updateprod.subCategoryId" required placeholder="ID">
+        </div>
+
+        <div class="input-group">
+          <label for="available">Stock Quantity</label>
+          <input type="number" name="available" [(ngModel)]="updateprod.available" required placeholder="Units">
+        </div>
+
+        <div class="input-group">
+          <label>Update Media</label>
+          <div class="file-drop-zone">
+            <input type="file" (change)="onFileChange($event)" id="file-upload">
+            <label for="file-upload">Replace Image</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions-dual">
+        <button type="button" 
+                class="submit-admin-btn" 
+                (click)="updateproduct(pid)" 
+                [disabled]="UpdateForm.invalid">
+          Save Changes
+        </button>
+        
+        <button type="button" 
+                class="delete-admin-btn" 
+                (click)="deleteproduct(pid)">
+          Delete Product
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+.admin-page-wrapper.admin-mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #fffdf0;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 750px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  border: 2px solid #000;
+  box-shadow: 10px 10px 0px #FFD700;
+}
+
+/* Header & Search */
+.card-header {
+  margin-bottom: 35px;
+  
+}
+
+
+.card-header h2 span {
+  background: #000;
+  color: #FFD700;
+  padding: 0 8px;
+  margin-left: 5px;
+}
+
+
+.search-mode {
+  border-bottom: 2px dashed #eee;
+  padding-bottom: 30px;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.search-row input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.fetch-btn {
+  background: #000;
+  color: #FFD700;
+  border: none;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.header-indicator {
+  display: inline-block;
+  background: #FFD700;
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* Form Styles (Identical to Create Product) */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.input-group input, .input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.file-drop-zone {
+  border: 2px dashed #FFD700;
+  text-align: center;
+  background: #fffdf0;
+  border-radius: 6px;
+}
+
+/* Action Buttons */
+.form-actions-dual {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.submit-admin-btn {
+  padding: 18px;
+  background: #FFD700;
+  color: #000;
+  border: 2px solid #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.delete-admin-btn {
+  padding: 18px;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-admin-btn:hover {
+  background: #ff4d4d;
+  color: #fff;
+  border-color: #ff4d4d;
+}
+
+
+/* Existing Admin Mode Styles... */
+
+.submit-admin-btn:disabled {
+  background: #e0e0e0;
+  color: #999;
+  border-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none; 
+  transform: none;
+}
+
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched {
+  border-color: #ff4d4d !important;
+}

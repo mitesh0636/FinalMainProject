@@ -23,7 +23,10 @@ import { CARTITEM } from "./Cartitem";
 
         @Column()
         imagePath!:string;
-
+      
+        @Column({type: "boolean", default: false})
+        isDeleted!:boolean;
+        
         @ManyToOne(() => SUBCATEGORY, (subcatte) => subcatte.product)
         SubCategory!:SUBCATEGORY;    
 

@@ -1,0 +1,19 @@
+<div class="product-card">
+  <div class="image-container">
+<img 
+      [src]="productService.BASE_URL + '/' + product.imagePath" 
+      [alt]="product.name">
+    <div class="badge" *ngIf="product.price < 500">Value Deal</div>
+  </div>
+
+  <div class="product-info">
+    <span class="category-tag">{{ product.SubCategory.subcategoryname }}</span>
+    <h3 class="product-name">{{ product.name }}</h3>    
+    <div class="card-footer">
+      <p class="product-price">₹{{ product.price }}</p>
+      <button class="view-btn" (click)="clickandopen()">
+        <span>View</span>
+      </button>
+    </div>
+  </div>
+</div>

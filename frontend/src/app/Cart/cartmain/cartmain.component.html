@@ -1,0 +1,50 @@
+<div class="cart-container">
+  <h1 class="cart-title">Your <span>Shopping Cart</span></h1>
+
+  @if (!CartItems || CartItems.length === 0) {
+    <div class="empty-cart">
+      <p>Your cart is feeling a bit light.</p>
+    </div>
+  } @else {
+    <div class="cart-layout">
+      
+      <div class="cart-items-section">
+        <div class="items-header">
+          <span>Product Details</span>
+          <button class="clear-btn" (click)="clearcart()">Clear Cart</button>
+        </div>
+
+        @for (item of CartItems; track item.id) {
+          <app-cartcard [cartitem]="item"></app-cartcard>
+        }
+      </div>
+
+      <div class="cart-summary-section">
+        <div class="summary-card">
+          <h3>Order Summary</h3>
+          
+          <div class="payment-method">
+            <label for="payment">Payment Method</label>
+            <div class="select-wrapper">
+              <select id="payment" [(ngModel)]="selectedpayment">
+                <option value="" disabled selected>Select Payment</option>
+                @for(payment of payments; track payment) {
+                  <option [value]="payment">{{payment}}</option>
+                }
+              </select>
+            </div>
+            <p class="selection-display">Selected: <strong>{{ selectedpayment || 'None' }}</strong></p>
+          </div>
+
+
+          <button class="checkout-btn" 
+                  [disabled]="!selectedpayment"
+                  (click)="checkout(selectedpayment)">
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
+
+    </div>
+  }
+</div>

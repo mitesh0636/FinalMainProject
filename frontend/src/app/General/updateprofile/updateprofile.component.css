@@ -1,0 +1,112 @@
+.settings-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  background-color: #f8fbff; /* Signature Light Blue tint */
+  min-height: 80vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.settings-card {
+  width: 100%;
+  max-width: 450px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #e2efff;
+  box-shadow: 0 10px 30px rgba(162, 210, 255, 0.1);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card-header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: #000;
+  margin: 0;
+}
+
+.card-header h2 span {
+  color: #a2d2ff;
+}
+
+.card-header p {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 8px;
+}
+
+/* Form Styling */
+.input-group {
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.input-group input, 
+.input-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+  outline: none;
+  border-color: #a2d2ff;
+  background: #fff;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  font-size: 0.75rem;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* Action Button */
+.form-actions {
+  margin-top: 30px;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 15px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-btn:hover:not(:disabled) {
+  background: #a2d2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(162, 210, 255, 0.4);
+}
+
+.save-btn:disabled {
+  background: #eee;
+  color: #aaa;
+  cursor: not-allowed;
+}

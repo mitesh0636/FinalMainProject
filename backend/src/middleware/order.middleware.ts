@@ -1,4 +1,4 @@
-import { NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data.source";
 import { ORDER, OrderStatus } from "../entities/Order";
 
@@ -20,7 +20,6 @@ export const updateOrderStatusMiddleware = async (req: Request, res: Response, n
         const orderDate = new Date(order.orderDate);
         const hoursPassed = (now.getTime() - orderDate.getTime()) / (1000 * 60 * 60);
 
-        // If more than 24 hours have passed, update to DISPATCHED
         if (hoursPassed >= 24) {
             order.orderstatus = OrderStatus.DISPATCHED;
             await orderRepo.save(order);

@@ -1,0 +1,43 @@
+<div class="customer-card" [class.is-locked]="Customer.isLocked">
+  <div class="status-bar" [class.locked]="Customer.isLocked"></div>
+
+  <div class="card-content">
+    <div class="card-header">
+      <div class="avatar-sm">{{ Customer.name.charAt(0) }}</div>
+      <div class="user-main-info">
+        <h3>{{ Customer.name }}</h3>
+        <span class="user-role">{{ Customer.role }}</span>
+      </div>
+      <div class="id-pill">#{{ Customer.id }}</div>
+    </div>
+
+    <div class="card-body">
+      <div class="contact-grid">
+        <div class="info-group">
+          <small>Email Address</small>
+          <p>{{ Customer.email }}</p>
+        </div>
+        <div class="info-group">
+          <small>Phone</small>
+          <p>{{ Customer.contactno || '—' }}</p>
+        </div>
+      </div>
+
+      <div class="info-group address-box">
+        <small>Shipping Address</small>
+        <p>{{ Customer.address || 'No address on file' }}</p>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="join-date">
+        Joined {{ Customer.createdAt | date:'MMM yyyy' }}
+      </div>
+      <button class="action-btn" 
+              [class.unlock]="Customer.isLocked" 
+              (click)="toggleLock(Customer.id)">
+        {{ Customer.isLocked ? 'Unlock Access' : 'Restrict User' }}
+      </button>
+    </div>
+  </div>
+</div>

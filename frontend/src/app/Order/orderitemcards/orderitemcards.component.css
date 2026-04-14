@@ -1,0 +1,97 @@
+.order-item-row {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: 'Inter', sans-serif;
+}
+
+.order-item-row:last-child {
+  border-bottom: none;
+}
+
+/* Thumbnail */
+.product-thumb {
+  width: 60px;
+  height: 60px;
+  background-color: #f8fbff;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid #eee;
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info Section */
+.item-info {
+  flex-grow: 1;
+  padding: 0 20px;
+}
+
+.info-top {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.product-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+}
+
+.item-id {
+  font-size: 0.7rem;
+  color: #bbb;
+  font-weight: 500;
+}
+
+.purchase-details {
+  margin: 5px 0 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.purchase-details strong {
+  color: #a2d2ff; /* Your Theme Blue */
+}
+
+.separator {
+  margin: 0 8px;
+  color: #ddd;
+}
+
+/* Total Section */
+.item-total {
+  text-align: right;
+  min-width: 100px;
+}
+
+.item-total label {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.item-total p {
+  margin: 2px 0 0 0;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #000;
+}
+
+/* Responsive Fix */
+@media (max-width: 480px) {
+  .order-item-row { flex-wrap: wrap; }
+  .item-total { width: 100%; text-align: left; margin-top: 10px; padding-left: 80px; }
+}

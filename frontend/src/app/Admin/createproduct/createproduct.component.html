@@ -1,0 +1,55 @@
+<div class="admin-page-wrapper admin-mode">
+  <div class="form-card">
+    <div class="card-header">
+      <div class="header-indicator">ADMIN TERMINAL</div>
+      <h2>पॉवरहाऊस <span>Add Product</span></h2>
+      <p>Add New Product into Inventory</p>
+    </div>
+
+    <div class="form-body">
+      <div class="input-group full">
+        <label for="name">Product Name</label>
+        <input type="text" name="name" [(ngModel)]="product.name" required placeholder="Enter formal product name">
+      </div>
+
+      <div class="input-group full">
+        <label for="description">Product Description</label>
+        <textarea name="desc" [(ngModel)]="product.description" required rows="3"></textarea>
+      </div>
+
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="price">Unit Price (INR)</label>
+          <div class="input-wrapper">
+            <span class="prefix">₹</span>
+            <input type="number" [(ngModel)]="product.price" required placeholder="0.00">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="subcategoryId">Sub-Category ID</label>
+          <input type="number" [(ngModel)]="product.subCategoryId" required placeholder="ID Code">
+        </div>
+
+        <div class="input-group">
+          <label for="available">Stock Quantity</label>
+          <input type="number" [(ngModel)]="product.available" required placeholder="Units">
+        </div>
+
+        <div class="input-group">
+          <label>Image Upload</label>
+          <div class="file-drop-zone">
+            <input type="file" (change)="onFileChange($event)" required id="file-upload">
+            <label for="file-upload">Browse Media</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="submit-admin-btn" (click)="submitProduct()">
+          Confirm & Save Product
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

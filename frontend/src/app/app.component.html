@@ -1,0 +1,47 @@
+<div class="navbar" [class.admin-mode]="(authservice.isAdminView | async) || isAdminRoute()" [class.admin-yellow-theme]="isAdminRoute()">
+  
+  <div class="brand-section">
+    <div class="logo" routerLink="/general">
+      the <span>पॉवरहाऊस</span>
+    </div>
+
+    <div *appHasRole="'admin'" class="admin-toggle">
+      <button class="toggle-btn" (click)="authservice.toggleAdminview()">
+        {{ (authservice.isAdminView | async) ? 'Switch to User View' : 'Switch to Admin View' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-content">
+    <div class="navlinks">
+      @if(!(authservice.isAdminView | async)) {
+        <a routerLink="/general" routerLinkActive="active">Home</a>
+        <a routerLink="/general/profile" routerLinkActive="active">Profile</a>
+        <a routerLink="/cart" routerLinkActive="active">My Cart</a>
+        <a routerLink="/order" routerLinkActive="active">My Orders</a>
+      }
+
+      @if((authservice.isAdminView | async) && authservice.getRole() === 'admin'){
+        <a routerLink="/admin/createtype" routerLinkActive="active">Create Type</a>
+        <a routerLink="/admin/createproduct" routerLinkActive="active">Add Product</a>
+        <a routerLink="/admin/updateproduct" routerLinkActive="active">Update Product</a>
+        <a routerLink="/admin/vieworders" routerLinkActive="active">View Orders</a>
+        <a routerLink="/admin/viewcustomers" routerLinkActive="active">View Customers</a>
+      }
+    </div>
+
+    <div class="auth-group">
+      @if(authservice.currentUser | async; as user){
+        <span class="welcome-text">Hi, {{user.name}}</span>
+        <button class="auth-btn logout" (click)="Logout()">Logout</button>
+      } @else {
+        <button class="auth-btn login" (click)="Login()">Login</button>
+        <button class="auth-btn register" (click)="Register()">Register</button>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>

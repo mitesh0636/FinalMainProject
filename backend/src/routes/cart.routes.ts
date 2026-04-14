@@ -8,9 +8,9 @@ const cartrouter = Router();
 cartrouter.get('/createcart', requireAuth, asyncHandler(CartController.getOrCreateCart));
 // cartrouter.get('/getcart', requireAuth, asyncHandler(CartController.getCart));
 cartrouter.post('/addcart', requireAuth, asyncHandler(CartController.addToCart));
-cartrouter.patch('/update/:id', requireAuth, asyncHandler(CartController.updateQuantity));
+cartrouter.post('/update/:id', requireAuth, asyncHandler(CartController.updateQuantity));
 cartrouter.delete('/removeItem/:id', requireAuth, asyncHandler(CartController.removeItem));
-cartrouter.delete('/delete/:id', requireAuth, asyncHandler(CartController.clearCart));
+cartrouter.delete('/clearcart', requireAuth, asyncHandler(CartController.clearCart));
 
 export default cartrouter
 

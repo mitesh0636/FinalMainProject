@@ -1,0 +1,28 @@
+<div class="hero-carousel">
+  @for (slide of slides; track $index) {
+    <div class="slide" [class.active]="$index === currentSlide">
+      <img [src]="slide.img" [alt]="slide.title">
+      <div class="overlay">
+        <div class="text-content">
+          <h1>{{ slide.title }}</h1>
+          @if(slide.price){
+          <p>Starting at <span>₹{{ slide.price }}</span></p>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  
+  <button class="arrow left" (click)="prevSlide()">&#10094;</button>
+  <button class="arrow right" (click)="nextSlide()">&#10095;</button>
+  
+  <div class="indicators">
+    @for (s of slides; track $index) {
+      <span [class.dot-active]="$index === currentSlide" (click)="currentSlide = $index"></span>
+    }
+  </div>
+</div>
+
+<div class="container">
+  <app-productmain></app-productmain>
+</div>

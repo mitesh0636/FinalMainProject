@@ -1,0 +1,61 @@
+<div class="admin-order-card">
+  <div class="card-top">
+    <div class="order-id-section">
+      <small>ORDER REFERENCE</small>
+      <h3>#{{viewallorder.id}}</h3>
+    </div>
+    <div class="status-pill-admin" [attr.data-status]="viewallorder.orderstatus">
+      {{viewallorder.orderstatus}}
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="grid-col">
+      <div class="data-group">
+        <label>Timestamps</label>
+        <p>Placed: <strong>{{viewallorder.orderDate | date:'short'}}</strong></p>
+        <p>Delivery: <strong>{{viewallorder.deliveryDate | date:'mediumDate'}}</strong></p>
+      </div>
+      <div class="data-group">
+        <label>Payment Method</label>
+        <p class="method-tag">{{viewallorder.paymentMethod}}</p>
+      </div>
+    </div>
+
+    <div class="grid-col">
+      <div class="data-group">
+        <label>Customer Details</label>
+        <p class="cust-name">{{viewallorder.user.name}}</p>
+        <p class="cust-email">{{viewallorder.user.email}}</p>
+      </div>
+      <div class="data-group">
+        <label>Shipping To</label>
+        <p class="address-text">{{viewallorder.user.address}}</p>
+      </div>
+    </div>
+
+    <div class="grid-col billing">
+      <div class="billing-line">
+        <span>Subtotal</span>
+        <span>₹{{viewallorder.SubTotal}}</span>
+      </div>
+      <div class="billing-line">
+        <span>Tax</span>
+        <span>₹{{viewallorder.TaxApplied}}</span>
+      </div>
+      <div class="billing-total">
+        <span>Total Revenue</span>
+        <span>₹{{viewallorder.TotalPayment}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-items-expansion">
+    <label class="items-label">Purchased Manifest ({{viewallorder.orderitem.length}})</label>
+    <div class="items-scroller">
+      @for (item of viewallorder.orderitem; track $index) {
+        <app-orderitemcards [orderitem]="item"></app-orderitemcards>
+      }
+    </div>
+  </div>
+</div>

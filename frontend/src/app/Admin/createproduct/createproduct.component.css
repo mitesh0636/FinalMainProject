@@ -1,0 +1,126 @@
+.admin-page-wrapper.admin-mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #fffdf0; /* Very light yellow background */
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 750px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  border: 2px solid #000; /* Sharp black border for admin */
+  box-shadow: 10px 10px 0px #FFD700; /* Heavy Yellow Shadow */
+}
+
+.card-header {
+  margin-bottom: 35px;
+}
+
+.header-indicator {
+  display: inline-block;
+  background: #FFD700;
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.card-header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: #000;
+  margin: 0;
+}
+
+.card-header h2 span {
+  background: #000;
+  color: #FFD700;
+  padding: 0 8px;
+  margin-left: 5px;
+}
+
+/* Grid Logic */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group.full {
+  grid-column: span 2;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.input-group input, 
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #FFD700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+/* File Upload */
+.file-drop-zone {
+  position: relative;
+  border: 2px dashed #FFD700;
+  border-radius: 6px;
+  text-align: center;
+  background: #fffdf0;
+}
+
+.file-drop-zone label {
+  display: block;
+  padding: 10px;
+  color: #000 !important;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Button */
+.submit-admin-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 18px;
+  background: #FFD700;
+  color: #000;
+  border: 2px solid #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-admin-btn:hover {
+  background: #000;
+  color: #FFD700;
+}

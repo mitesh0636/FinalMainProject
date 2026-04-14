@@ -1,0 +1,152 @@
+.details-container {
+  padding: 60px 8%;
+  background-color: #ffffff;
+  min-height: 90vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.product-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Image Styling */
+.image-section {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+}
+
+.main-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Info Styling */
+.breadcrumb {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.breadcrumb span {
+  color: #a2d2ff; /* Theme Light Blue */
+  font-weight: 600;
+}
+
+.product-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  margin: 0 0 10px 0;
+}
+
+.price-tag {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 25px;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.stock-status {
+  font-weight: 600;
+  color: #2ecc71; /* Green for available */
+  margin-bottom: 20px;
+}
+
+.stock-status.out-of-stock {
+  color: #e74c3c;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 30px 0;
+}
+
+/* Actions */
+.action-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 2px solid #000;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.qty-number {
+  padding: 0 20px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.add-cart-btn {
+  flex-grow: 1;
+  padding: 15px;
+  background-color: #a2d2ff; /* Your Light Blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-cart-btn:hover:not(:disabled) {
+  background-color: #000; /* Turns Black on hover for a sharp look */
+  transform: translateY(-2px);
+}
+
+.add-cart-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.product-meta {
+  margin-top: 40px;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .product-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

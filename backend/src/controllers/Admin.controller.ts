@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data.source";
-import { ORDER } from "../entities/Order";
+import { ORDER, OrderStatus } from "../entities/Order";
 import { PRODUCT } from "../entities/Product";
 import { User } from "../entities/User";
 import { Admin, ResumeOptions } from "typeorm";
@@ -9,6 +9,7 @@ import * as path from "path"
 import { PRODUCTTYPE } from "../entities/Producttype";
 import { CATEGORY } from "../entities/Category";
 import { SUBCATEGORY } from "../entities/SubCategory";
+import { ORDERITEM } from "../entities/OrderItem";
 
 
 export class AdminController {
@@ -17,16 +18,16 @@ export class AdminController {
     private static orderRepository  = AppDataSource.getRepository(ORDER);
     private static producttypeRepository = AppDataSource.getRepository(PRODUCTTYPE);
     private static categoryRepository = AppDataSource.getRepository(CATEGORY);
+    private static orderitemRepository = AppDataSource.getRepository(ORDERITEM);
     private static subcategoryRepository = AppDataSource.getRepository(SUBCATEGORY);
  
     static async getAllCustomers(req: Request, res:Response) {
             const customers = await AdminController.userRepository.find({
-                select:["id", "name", "email", "role", "isLocked", "createdAt"],
+                select:["id", "name", "email", "role", "isLocked", "createdAt","contactno", "address"],
                 where: { role:"user" as any }
             });
             return res.json(customers);
     }
-
 
     static async createproducttype(req: Request, res:Response)
     {
@@ -93,14 +94,19 @@ export class AdminController {
     static async toggleLock(req:Request, res:Response)
     {
             const userId = parseInt(String(req.params.id));
-            const { isLocked } = req.body;
             const user = await AdminController.userRepository.findOneBy({ id: userId});
             if (!user) return res.status(404).json({message:"User not found"});
 
-            user.isLocked = isLocked;
+            if(user.isLocked)
+            {
+            user.isLocked = false;
+            }
+            else{
+            user.isLocked = true;
+            }
             await AdminController.userRepository.save(user);
 
-            return res.json({message: `User ${isLocked ? 'locked' : 'unlocked'} sucessfully`});
+            return res.json({message: `User ${user.isLocked} sucessfully`});
 
     }
 
@@ -109,12 +115,16 @@ export class AdminController {
             const {name, description, price, available, subCategoryId } = req.body;
            const imagePath = (req as any).file ? `ProductImages/${(req as any).file.filename}` : undefined;
 
+
+           const parsedprice  = Number(price);
+           const parseSubId = Number(subCategoryId);
+
             const product = AdminController.productRepository.create({
                 name,
                 description,
-                price: Number(price),
+                price: Number(parsedprice),
                 available,
-                SubCategory: { id: Number(subCategoryId) },
+                SubCategory: { id: Number(parseSubId) },
                 imagePath: imagePath
             });
 
@@ -138,13 +148,11 @@ export class AdminController {
                 updateData.imagePath = `ProductImages/${(req as any).file.filename}`;
             }
 
-            Object.assign(product, updateData);
+            AdminController.productRepository.merge(product, updateData);
             await AdminController.productRepository.save(product);
 
             return res.json(product);
     }
-
-
 
 static async deleteProduct(req: Request, res:Response) {
         const productId = parseInt(String(req.params.id));
@@ -152,10 +160,23 @@ static async deleteProduct(req: Request, res:Response) {
         const product = await AdminController.productRepository.findOneBy({id:productId});
         if (!product) return res.status(404).json({message:'Product not found'});
 
+        const productinorders = await AdminController.orderitemRepository.find({
+            where: {
+                product : {id: productId}
+            },
+            relations: ["order"]
+        });
 
-        await AdminController.productRepository.delete(productId);
+            for (const productinorder of productinorders)
+            {
+               if (productinorder.order.orderstatus === OrderStatus.ORDERED || productinorder.order.orderstatus === OrderStatus.DISPATCHED)
+                {
+                return res.status(409).json({error: "Product is in Someone's Live Order, You cannot Delete."})
+                }  
+            }
+    
+        await AdminController.productRepository.update(productId, {isDeleted: true});
         return res.json({message:"Product deleted"});
-
 }
 
 
@@ -167,8 +188,37 @@ static async getAllOrders(req: Request,res: Response)
         });
         return res.json(orders);
     }
+
+
+static async checkprodid(req: Request, res: Response){
+    const prodtid = parseInt(String(req.params.id));
+    const productype = await AdminController.producttypeRepository.findOneBy({
+        id: prodtid
+    })
+     
+    if (productype){
+      return res.json(true)
+    }
+    else{
+        return res.json(false)
+    }
 }
 
+
+static async checkcatid(req: Request, res: Response){
+    const catid = parseInt(String(req.params.id));
+    const productpe = await AdminController.categoryRepository.findOneBy({
+        id: catid
+    })
+
+    if (productpe){
+    return res.json(true);
+}
+else{
+    return res.json(false);
+}
+}
+}
 
 
     

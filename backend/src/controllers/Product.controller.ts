@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../data.source";
 import { PRODUCT } from "../entities/Product";
-import { Between } from "typeorm";
+import { Between, Brackets } from "typeorm";
 
 export class ProductController {
     private static productRepository = AppDataSource.getRepository(PRODUCT);
@@ -12,11 +12,11 @@ export class ProductController {
 
         const skip = (Number(page) - 1) * Number(limit);
         const queryOptions: any = {
-            where: {},
-            relations: ["subCategory", "subCategory.category", "subCategory.category.type"],
+            where: { isDeleted: false},
+            relations: ["SubCategory", "SubCategory.category", "SubCategory.category.producttype"],
             skip: skip,
             take: Number(limit),
-            order: { id: 'DESC' }
+            order: { id: 'ASC' }
         };
 
         if (minPrice && maxPrice) {
@@ -24,11 +24,11 @@ export class ProductController {
         }
 
         if (subCategoryId) {
-            queryOptions.where.subCategory = { id: Number(subCategoryId) };
+            queryOptions.where.SubCategory = { id: Number(subCategoryId) };
         } else if (categoryId) {
-            queryOptions.where.subCategory = { category: { id: Number(categoryId) } };
+            queryOptions.where.SubCategory = { category: { id: Number(categoryId) } };
         } else if (typeId) {
-            queryOptions.where.subCategory = { category: { type: { id: Number(typeId) } } };
+            queryOptions.where.SubCategory = { category: { type: { id: Number(typeId) } } };
         }
 
         const [products, total] = await ProductController.productRepository.findAndCount(queryOptions);
@@ -43,38 +43,63 @@ export class ProductController {
         });
     }
 
-    static async search(req: Request, res: Response) {
-        const { keyword } = req.query;
-        if (!keyword) return res.status(400).json({ message: "Keyword is required" });
+static async search(req: Request, res: Response) {
+    const { keyword, minPrice, maxPrice } = req.query;
 
-        const searchKeyword = `%${keyword}%`;
+    const searchKeyword = keyword ? `%${keyword}%` : '%%';
 
-        const products = await ProductController.productRepository
-            .createQueryBuilder("product")
-            .leftJoinAndSelect("product.subCategory", "subCategory")
-            .leftJoinAndSelect("subCategory.category", "category")
-            .leftJoinAndSelect("category.type", "type")
-            .where("product.name LIKE :kw", { kw: searchKeyword })
-            .orWhere("product.description LIKE :kw", { kw: searchKeyword })
-            .orWhere("subCategory.subCategoryName LIKE :kw", { kw: searchKeyword })
-            .orWhere("category.categoryName LIKE :kw", { kw: searchKeyword })
-            .orWhere("type.typeName LIKE :kw", { kw: searchKeyword })
-            .getMany();
+    const query = ProductController.productRepository
+        .createQueryBuilder("product")
+        .leftJoinAndSelect("product.SubCategory", "SubCategory")
+        .leftJoinAndSelect("SubCategory.category", "category")
+        .leftJoinAndSelect("category.producttype", "producttype")
+        .where("product.isDeleted = :isDeleted", { isDeleted: false });
 
-        res.json(products);
+    if (keyword) {
+        query.andWhere(new Brackets(qb => {
+            qb.where("product.name LIKE :kw", { kw: searchKeyword })
+              .orWhere("product.description LIKE :kw", { kw: searchKeyword })
+              .orWhere("SubCategory.subcategoryname LIKE :kw", { kw: searchKeyword })
+              .orWhere("category.categoryname LIKE :kw", { kw: searchKeyword })
+              .orWhere("producttype.typename LIKE :kw", { kw: searchKeyword });
+        }));
     }
+
+
+    if (minPrice !== undefined && minPrice !== '') {
+        query.andWhere("product.price >= :min", { min: Number(minPrice) });
+    }
+
+    if (maxPrice !== undefined && maxPrice !== '') {
+        query.andWhere("product.price <= :max", { max: Number(maxPrice) });
+    }
+
+    const products = await query.getMany();
+
+    res.json({
+        data: products,
+        meta: {
+            total: products.length,
+            page: 1,
+            lastPage: 1 
+        }
+    });
+}
 
     static async getProductById(req: Request, res: Response) {
         const id = parseInt(String(req.params.id));
         
         const product = await ProductController.productRepository.findOne({
-            where: { id },
-            relations: ["subCategory", "subCategory.category", "subCategory.category.type"]
+            where: { id, isDeleted: false },
+            relations: ["SubCategory", "SubCategory.category", "SubCategory.category.producttype"]
         });
 
-        // This is a LOGIC error, so we handle it with a specific status code
         if (!product) {
             return res.status(404).json({ message: "Product not found" });
+        }
+
+        if (product.isDeleted){
+            return res.status(409).json({error: "Product Invalid"})
         }
 
         res.json(product);

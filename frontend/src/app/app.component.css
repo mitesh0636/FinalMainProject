@@ -1,0 +1,218 @@
+/* Navbar Container */
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Pushes brand-section to left, nav-content to right */
+  align-items: center;
+  padding: 0;
+  height: 70px;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Adjust this to control the distance from the logo */
+}
+
+.logo {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+
+/* Style the toggle button to look cleaner next to the logo */
+.toggle-btn {
+  background: #000;
+  color: #FFD700;
+  border: 1px solid #000;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Inverse colors when in Admin Yellow theme */
+.admin-yellow-theme .toggle-btn {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  height: 70px;
+  background-color: #a2d2ff; /* Your signature Light Blue */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Logo Styling */
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: #000000; /* Black accent for 'PowerHouse' to make it punchy */
+}
+
+/* Navigation Grouping */
+.nav-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: black; /* Slightly transparent white */
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+/* Force yellow if the URL contains admin (browser-level hint) */
+.navbar.admin-yellow-theme,
+.navbar.admin-mode {
+  background-color: #FFD700 !important;
+  border-bottom: 3px solid #000 !important;
+}
+
+.navbar.admin-yellow-theme span, 
+.navbar.admin-mode span {
+  color: #000 !important; /* Keep the Powerhouse text black on yellow */
+}
+
+.navlinks a:hover, 
+.navlinks a.active {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 4px;
+}
+
+/* Admin Toggle Button */
+.toggle-btn {
+  background-color: black;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.toggle-btn:hover {
+  background: rgb(64, 95, 105);
+}
+
+/* Auth Buttons */
+.auth-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.auth-btn {
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.login {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.register {
+  background: #ffffff; /* White background */
+  color: #a2d2ff;    /* Light blue text */
+  border: none;
+}
+
+.logout {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.auth-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.welcome-text {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+/* --- ADMIN MODE THEME (Yellow) --- */
+.navbar.admin-mode {
+  background-color: #FFD700; /* Gold/Yellow */
+  border-bottom: 3px solid #000; /* Extra "Warning" border */
+}
+
+.navbar.admin-mode .logo {
+  color: #000; /* Black looks better on Yellow */
+}
+
+.navbar.admin-mode .logo span {
+  color: #ffffff; /* Contrast for PowerHouse */
+}
+
+.navbar.admin-mode .navlinks a {
+  color: #000; /* Black links for readability */
+  font-weight: 700;
+}
+
+.navbar.admin-mode .navlinks a:hover, 
+.navbar.admin-mode .navlinks a.active {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* Change the Toggle Button in Admin Mode to look like a "Return" button */
+.navbar.admin-mode .toggle-btn {
+  background: #000;
+  color: #FFD700;
+  border: 1px solid #000;
+}
+
+/* Adjust Welcome text for Admin Mode */
+.navbar.admin-mode .welcome-text {
+  color: #000;
+  font-weight: 600;
+}

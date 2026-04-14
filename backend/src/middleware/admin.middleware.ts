@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
+import { User } from '../entities/User';
 
 export const requireAdmin = (req: Request, res: Response, next: NextFunction): void => {
 
-  if (req.user && (req.user as any).role === 'admin') {
-    console.log("Hii 1")
+  if (req.user && (req.user as User).role === 'admin') {
     return next();
   }
 

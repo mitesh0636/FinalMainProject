@@ -13,7 +13,7 @@ export interface SessionEntry extends SessionInfo {
 class SessionStore {
   private sessions = new Map<string, SessionInfo>();
   private userIndex = new Map<number, Set<string>>();
-
+  
   create(jti: string, info: SessionInfo): void {
     this.sessions.set(jti, info);
 
@@ -26,6 +26,7 @@ class SessionStore {
   }
 
   get(jti: string): SessionInfo | undefined {
+    console.log(this.sessions.get(jti))
     return this.sessions.get(jti);
   }
 
