@@ -1,1 +1,1 @@
-Please pull the master branch, not the main brach
+Please pull the main branch, not the master brach
