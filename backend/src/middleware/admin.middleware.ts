@@ -6,6 +6,6 @@ export const requireAdmin = (req: Request, res: Response, next: NextFunction): v
   if (req.user && (req.user as User).role === 'admin') {
     return next();
   }
-
+  
   res.status(403).json({ error: 'Access denied. Admins only.' });
 };

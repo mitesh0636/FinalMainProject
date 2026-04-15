@@ -39,5 +39,10 @@ this.authservice.getprofile().pipe(takeUntil(this.destroy$)).subscribe({
 goupdate(){
 this.router.navigate([`general/update/${this.UserDetail.id}`])
 }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
 

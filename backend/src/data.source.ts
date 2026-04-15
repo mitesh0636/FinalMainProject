@@ -16,7 +16,7 @@ dotenv.config();
 export const AppDataSource = new DataSource({
     type: "sqlite",
     database: process.env.DB_PATH || "database.sqlite",
-    synchronize: false, // Must be false for the capstone!
+    synchronize: false, 
     logging: false,
     entities: [User, CART, CARTITEM, CATEGORY, ORDER, ORDERITEM, PRODUCT, PRODUCTTYPE, SUBCATEGORY],
     migrations: ["src/migrations/*.ts"],

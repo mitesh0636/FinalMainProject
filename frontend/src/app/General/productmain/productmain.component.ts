@@ -25,7 +25,6 @@ export class ProductmainComponent implements OnInit, OnDestroy {
     this.setupSearch();
   }
 
-// Add these to your component class
 searchControl = new FormControl('');
 minPriceControl = new FormControl(0);
 maxPriceControl = new FormControl(1000000);
@@ -40,11 +39,11 @@ setupSearch() {
     takeUntil(this.destroy$),
     switchMap(([keyword, min, max]) => {
       const searchTerm = keyword ? keyword.trim() : '';
-      if (!searchTerm && min === 0 && max === 100000) {
+      if (!searchTerm && min === 0 && max === 1000000) {
         return this.productservice.getproducts();
       }
 
-      return this.productservice.searchProducts(searchTerm, min ?? 0, max ?? 100000);
+      return this.productservice.searchProducts(searchTerm, min ?? 0, max ?? 1000000);
     })
   ).subscribe({
     next: (res) => {

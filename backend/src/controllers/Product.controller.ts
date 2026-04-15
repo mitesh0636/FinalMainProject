@@ -19,17 +19,17 @@ export class ProductController {
             order: { id: 'ASC' }
         };
 
-        if (minPrice && maxPrice) {
-            queryOptions.where.price = Between(Number(minPrice), Number(maxPrice));
-        }
+        // if (minPrice && maxPrice) {
+        //     queryOptions.where.price = Between(Number(minPrice), Number(maxPrice));
+        // }
 
-        if (subCategoryId) {
-            queryOptions.where.SubCategory = { id: Number(subCategoryId) };
-        } else if (categoryId) {
-            queryOptions.where.SubCategory = { category: { id: Number(categoryId) } };
-        } else if (typeId) {
-            queryOptions.where.SubCategory = { category: { type: { id: Number(typeId) } } };
-        }
+        // if (subCategoryId) {
+        //     queryOptions.where.SubCategory = { id: Number(subCategoryId) };
+        // } else if (categoryId) {
+        //     queryOptions.where.SubCategory = { category: { id: Number(categoryId) } };
+        // } else if (typeId) {
+        //     queryOptions.where.SubCategory = { category: { type: { id: Number(typeId) } } };
+        // }
 
         const [products, total] = await ProductController.productRepository.findAndCount(queryOptions);
 

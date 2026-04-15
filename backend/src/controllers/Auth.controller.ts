@@ -21,7 +21,6 @@ static async create(req: Request, res: Response): Promise<void>{
     return;
   }
 
-
   if (await AuthController.userRepo.findOneBy({ email : email })) {
     res.status(409).json({ error: 'Username already taken' });
     return;

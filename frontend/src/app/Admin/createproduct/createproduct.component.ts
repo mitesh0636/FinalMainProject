@@ -47,4 +47,7 @@ submitProduct(){
     error: (err) => this.errorMessage = "Failed to create product"
   });
 }
+
+
+
 }

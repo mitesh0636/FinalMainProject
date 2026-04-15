@@ -34,4 +34,9 @@ this.adminservice.getallorders().pipe(takeUntil(this.destroy$)).subscribe({
 })
 
 }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

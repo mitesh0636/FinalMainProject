@@ -70,7 +70,7 @@ passport.serializeUser((user: any, done) => {
 
 passport.deserializeUser(async (id: string, done) => {
   try {
-    const user = await AppDataSource.getRepository(User).findOneBy({});
+    const user = await AppDataSource.getRepository(User).findOneBy({id: parseInt(id)});
     done(null, user); 
   } catch (err) {
     done(err);

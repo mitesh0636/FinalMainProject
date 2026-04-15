@@ -55,7 +55,6 @@ static async checkout(req: Request, res: Response) {
             total = SubTotal + TaxApplied;
             await OrderController.orderRepository.update(savedOrder.id, {SubTotal: SubTotal, TaxApplied: TaxApplied, TotalPayment: total})
 
-
             await Manager.delete(CARTITEM, { cart: { id: cart.id } });
         });
         return res.status(201).json({ message: "Order placed" });
@@ -75,8 +74,6 @@ static async checkout(req: Request, res: Response) {
  static async getOrderDetails(req:Request, res: Response) {
         const orderid = parseInt(String(req.params.id));
         const userId = (req as any).user.id;
-        
-    
         const userRole = (req as any).user.role;
 
         const order = await OrderController.orderRepository.findOne({
@@ -88,7 +85,6 @@ static async checkout(req: Request, res: Response) {
             return res.status(403).json({message:"Unauthorized"});
         }
         return res.json(order);
-    
  }
 
 static async cancelorder(req:Request, res:Response)

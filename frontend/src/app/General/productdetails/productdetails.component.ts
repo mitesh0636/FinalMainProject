@@ -25,7 +25,6 @@ const id = Number(this.routes.snapshot.paramMap.get('id'));
 this.getproductbyid(id)
 }
 
-
 getproductbyid(id: number){
 console.log(id);
 this.productservice.getProductById(id).pipe(takeUntil(this.destroy$)).subscribe({
@@ -39,7 +38,6 @@ this.productservice.getProductById(id).pipe(takeUntil(this.destroy$)).subscribe(
 }
 
 addcart(id: number, quantity : number){
-
 if(this.authservice.currentUser.value){
 this.cartservice.addtoCart(id, quantity).pipe(takeUntil(this.destroy$)).subscribe({
 next: (data) => {
@@ -56,6 +54,8 @@ else{
   this.router.navigate(['/auth/login'])
 }
 }
+
+
 increment(){
 this.quantity = this.quantity + 1;
 }
@@ -65,4 +65,10 @@ if (this.quantity > 1){
 this.quantity = this.quantity - 1;
 }
 }
+
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

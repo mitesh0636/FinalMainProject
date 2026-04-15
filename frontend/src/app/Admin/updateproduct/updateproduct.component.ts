@@ -93,4 +93,10 @@ this.adminservice.deleteProduct(id).pipe(takeUntil(this.destroy$)).subscribe({
 })
 }
 
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
 }

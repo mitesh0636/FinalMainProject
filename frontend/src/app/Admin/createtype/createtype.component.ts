@@ -98,4 +98,10 @@ this.adminservice.checkcatid(this.categoryid).pipe(takeUntil(this.destroy$)).sub
   }
 })
 }
+
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

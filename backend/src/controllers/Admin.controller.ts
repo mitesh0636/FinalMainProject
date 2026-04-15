@@ -67,7 +67,6 @@ export class AdminController {
         return res.json(category);
     }
 
-
     static async createSubCategory(req: Request, res:Response){
          const categoryid = parseInt(String(req.params.id));
          const { subcategoryname } = req.body;
@@ -109,6 +108,8 @@ export class AdminController {
             return res.json({message: `User ${user.isLocked} sucessfully`});
 
     }
+
+    
 
     static async createProduct(req: Request, res: Response)
     {

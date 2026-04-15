@@ -16,6 +16,4 @@ productc!:PRODUCT;
 @Column()
 quantity!:number;
 
-
-
 }
