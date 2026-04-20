@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserData } from '../../Modals/Register.modal';
 import { Subject, takeUntil } from 'rxjs';
@@ -27,6 +27,7 @@ private destroy$ = new Subject<void>();
 
 constructor(private authservice: AuthService, private router: Router) {}
 
+authservice = inject(AuthService);
 onRegister(form: NgForm) {
     if (form.invalid) return;
 

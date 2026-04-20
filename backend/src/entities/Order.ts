@@ -52,5 +52,4 @@ orderstatus!:OrderStatus;
 @Column({type:"simple-enum", enum:PAYMENTMETHOD})
 paymentMethod!:PAYMENTMETHOD;
 
-
 }

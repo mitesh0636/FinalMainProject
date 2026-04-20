@@ -19,7 +19,6 @@ quantity: number;
 product: getProductsResponse
 }
 
-
 export interface combinedorder{
 orderdes: getcustomerordersresponse;
 orderitems: getorderitemdetails[];

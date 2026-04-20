@@ -7,7 +7,7 @@ import { AuthService } from '../../Auth/auth.service';
   standalone: true
 })
 export class HasRoleDirective implements OnInit, OnDestroy {
-  @Input('appHasRole') targetRole: string = ''; // The role allowed to see this
+  @Input('appHasRole') targetRole: string = ''; 
   private sub?: Subscription;
 
   constructor(

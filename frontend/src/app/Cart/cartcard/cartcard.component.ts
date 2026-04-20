@@ -22,6 +22,7 @@ localquantity: number = 0;
 ngOnInit(){
 this.localquantity = this.cartitem.quantity;
 }
+
 removeItem(id:number){
 this.cartservice.removeItem(id).pipe(takeUntil(this.destroy$)).subscribe({
   next : (data) => {

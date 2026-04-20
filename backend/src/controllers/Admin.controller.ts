@@ -109,8 +109,6 @@ export class AdminController {
 
     }
 
-    
-
     static async createProduct(req: Request, res: Response)
     {
             const {name, description, price, available, subCategoryId } = req.body;

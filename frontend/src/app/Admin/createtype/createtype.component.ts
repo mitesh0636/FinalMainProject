@@ -85,7 +85,7 @@ this.adminservice.checkcatid(this.categoryid).pipe(takeUntil(this.destroy$)).sub
     alert("SubCategory created Successfully");
   },
   error: (err) => {
-    this.errormessage = err.error.message || 'Unable to create'
+    this.errormessage = err.error.message ;
   }
 })
    }
@@ -94,7 +94,7 @@ this.adminservice.checkcatid(this.categoryid).pipe(takeUntil(this.destroy$)).sub
    }
   },
   error: (err) => {
-    this.errormessage = err.error.message || 'Failure'
+    this.errormessage = err.error.message ;
   }
 })
 }

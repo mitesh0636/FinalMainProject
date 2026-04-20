@@ -43,7 +43,7 @@ passport.use(
     async (payload: { sub: number; jti: string }, done) => {
       try {
         const session = sessionStore.get(payload.jti);
-        console.log("Hii 1")
+      
         if (!session) {
           return done(null, false);
         }
@@ -64,16 +64,16 @@ passport.use(
 );
 
 
-passport.serializeUser((user: any, done) => {
-  done(null, user.id);
-});
+// passport.serializeUser((user: any, done) => {
+//   done(null, user.id);
+// });
 
-passport.deserializeUser(async (id: string, done) => {
-  try {
-    const user = await AppDataSource.getRepository(User).findOneBy({id: parseInt(id)});
-    done(null, user); 
-  } catch (err) {
-    done(err);
-  }
-});
+// passport.deserializeUser(async (id: string, done) => {
+//   try {
+//     const user = await AppDataSource.getRepository(User).findOneBy({id: parseInt(id)});
+//     done(null, user); 
+//   } catch (err) {
+//     done(err);
+//   }
+// });
  

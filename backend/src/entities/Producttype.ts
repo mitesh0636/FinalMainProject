@@ -12,5 +12,4 @@ typename!:string;
 @OneToMany(() => CATEGORY, (Categor) => Categor.producttype)
 category!:CATEGORY[];
 
-
 }
